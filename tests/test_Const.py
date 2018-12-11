@@ -8,15 +8,56 @@ class TestDetectionEvent(unittest.TestCase):
 
     def test_add_obj(self):
         c = Const()
+        int1 = 3
+        c.add_obj(int1)
         #TODO
 
     def test_basic_values(self):
         c = Const()
-        #TODO
+        int1 = 3
+        int2 = 3
+        c.add_obj(int1)
+        int1 = 4
+        time.sleep(.1)
+        self.assertEqual(int1,int2)
 
     def test_object(self):
-        c = Const()
-        #TODO
+        list1 = [1,'two',3]
+        list2 = [1,'two',3]
+
+        c = Const([list1])
+
+        list1[0] = 2
+        time.sleep(.1)
+        self.assertEqual(list1,list2)
+
+        list1[1] = 'twoo'
+        time.sleep(.1)
+        self.assertEqual(list1,list2)
+
+        list1 = [1,2,3]
+        time.sleep(.1)
+        self.assertEqual(list1,list2)
+
+
+    def test_object_methods(self):
+        class TestClass:
+            def func(self):
+                a = 3+5
+                print(a)
+
+        obj = TestClass()
+        obj_copy = TestClass()
+
+        c = Const([obj])
+
+        def func():
+            pass
+
+        obj.func = func
+
+        time.sleep(.1)
+        self.assertEqual(obj.func,obj_copy.func)
 
     def test_complex_object(self):
         c = Const()

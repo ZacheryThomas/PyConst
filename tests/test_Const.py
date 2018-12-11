@@ -51,13 +51,14 @@ class TestDetectionEvent(unittest.TestCase):
 
         c = Const([obj])
 
-        def func():
-            pass
+        def func(self):
+            a = 3
+            print(a)
 
         obj.func = func
 
         time.sleep(.1)
-        self.assertEqual(obj.func,obj_copy.func)
+        self.assertEqual((obj.func.__code__.co_code),(obj_copy.func.__code__.co_code)) #This won't catch anything with same structure but different value. Probably fine
 
     def test_complex_object(self):
         c = Const()

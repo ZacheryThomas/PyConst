@@ -10,7 +10,7 @@ class Const:
 
         _thread.start_new_thread(self.run , ())
 
-    def add_obj(self, obj)
+    def add_obj(self, obj):
         self.objList.append(obj)
 
     def run(self):

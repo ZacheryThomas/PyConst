@@ -1,25 +1,11 @@
 import unittest, time
-from Const import Const
+from pyconst.Const import Const
 
-class TestDetectionEvent(unittest.TestCase):
+class TestConst(unittest.TestCase):
     def test_constructor_params(self):
-        c = Const()
+        c = Const([])
         #TODO check that the objList thing works
 
-    def test_add_obj(self):
-        c = Const()
-        int1 = 3
-        c.add_obj(int1)
-        #TODO
-
-    def test_basic_values(self):
-        c = Const()
-        int1 = 3
-        int2 = 3
-        c.add_obj(int1)
-        int1 = 4
-        time.sleep(.1)
-        self.assertEqual(int1,int2)
 
     def test_object(self):
         list1 = [1,'two',3]
@@ -46,8 +32,8 @@ class TestDetectionEvent(unittest.TestCase):
                 a = 3+5
                 print(a)
 
-        obj = TestClass()
-        obj_copy = TestClass()
+        obj = Const([])
+        obj_copy = Const([])
 
         c = Const([obj])
 
@@ -55,11 +41,11 @@ class TestDetectionEvent(unittest.TestCase):
             a = 3
             print(a)
 
-        obj.func = func
+        obj.run = func
 
         time.sleep(.1)
-        self.assertEqual((obj.func.__code__.co_code),(obj_copy.func.__code__.co_code)) #This won't catch anything with same structure but different value. Probably fine
+        self.assertEqual((obj.run.__code__.co_code),(obj_copy.run.__code__.co_code)) #This won't catch anything with same structure but different value. Probably fine
 
     def test_complex_object(self):
-        c = Const()
+        c = Const([])
         #TODO

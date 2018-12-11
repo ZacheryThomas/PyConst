@@ -3,8 +3,9 @@ import time
 import pickle
 
 class Const:
-    def __init__(self, objList):
+    def __init__(self, objList, shame="Shame on you for try to change my object"):
         self.objList = objList
+        self.shame = shame
 
         objListConstCopy = [pickle.loads(pickle.dumps(obj)) for obj in objList]
         self.objListConstCopy = objListConstCopy
@@ -16,7 +17,7 @@ class Const:
         # do the thing
         while True:
             time.sleep(10)
-            print("running...") #TODO: remove
+            print(shame) #TODO: only print when the objects differ
             print( pickle.dumps(self.objList) == pickle.dumps(self.objListConstCopy) )
 
             pass

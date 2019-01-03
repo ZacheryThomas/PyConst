@@ -11,7 +11,7 @@ class TestConst(unittest.TestCase):
         list1 = [1,'two',3]
         list2 = [1,'two',3]
 
-        c = Const([list1])
+        c = Const(list1)
 
         list1[0] = 2
         time.sleep(.1)
@@ -21,31 +21,21 @@ class TestConst(unittest.TestCase):
         time.sleep(.1)
         self.assertEqual(list1,list2)
 
-        list1 = [1,2,3]
-        time.sleep(.1)
-        self.assertEqual(list1,list2)
-
-
-    def test_object_methods(self):
-        class TestClass:
-            def func(self):
-                a = 3+5
-                print(a)
-
-        obj = Const([])
-        obj_copy = Const([])
-
-        c = Const([obj])
-
-        def func(self):
-            a = 3
-            print(a)
-
-        obj.run = func
-
-        time.sleep(.1)
-        self.assertEqual((obj.run.__code__.co_code),(obj_copy.run.__code__.co_code)) #This won't catch anything with same structure but different value. Probably fine
 
     def test_complex_object(self):
-        c = Const([])
-        #TODO
+        obj_list = [Const([])]
+        obj_list_copy = [Const([])]
+
+        c = Const(obj_list)
+
+        def run(self):
+            obj_list = [Const([])]
+            obj_list_copy = [Const([])]
+
+            c = Const(obj_list)
+
+        obj_list[0].run = run
+        #TODO investigate why shame sometimes prints multiple times in this test??
+
+        time.sleep(.1)
+        self.assertEqual((obj_list[0].run.__code__.co_code),(obj_list_copy[0].run.__code__.co_code)) #This won't catch anything with same structure but different value. Probably fine
